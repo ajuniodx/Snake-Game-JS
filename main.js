@@ -58,7 +58,12 @@ function startGame() {
     if (direction == "up") positionY -= box;
     if (direction == "down") positionY += box;
 
-    snake.pop();
+    if (positionX != drop.x || positionY != drop.y) {
+        snake.pop()  
+    } else {
+        drop.x = Math.floor(Math.random() * 15 + 1) * box
+        drop.y = Math.floor(Math.random() * 15 + 1) * box
+    };
 
     let snakeHead = {
         x: positionX,
