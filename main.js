@@ -1,3 +1,17 @@
+document.addEventListener('keypress', function (e) {
+    function starSnake() {
+
+        if (e.which == 13) {
+            document.getElementById('pressStart').style.display = "none";
+            document.getElementById('title').style.display = "block";
+            document.getElementById('snake').style.display = "block";
+            startGame();
+        };
+    };
+    starSnake();
+
+}, false);
+
 let canvas = document.getElementById("snake");
 let context = canvas.getContext("2d");
 let box = 32;
@@ -28,7 +42,7 @@ function createSnake(){
 function dropFood() {
     context.fillStyle = "#ff5722";
     context.fillRect(drop.x, drop.y, box, box);
-}
+};
 
 document.addEventListener("keydown", update);
 
@@ -40,32 +54,26 @@ function update(event) {
 };
 
 function startGame() {
-    if (snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
-    if (snake[0].x < 0  && direction == "left") snake[0].x = 16 * box;
-    if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
-    if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
-
-    for (i = 1; i < snake.length; i++) {
-        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
-            clearInterval(game);
-            alert('GAME OVER');
-        };
-    };
 
     createBg();
     createSnake();
     dropFood();
+    
+    if (snake[0].x > 15 * box && direction == "right") snake[0].x = 0;
+    if (snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
+    if (snake[0].y > 15 * box && direction == "down") snake[0].y = 0;
+    if (snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
 
-    let positionX = snake[0].x ;
-    let positionY = snake[0].y ;
+    let positionX = snake[0].x;
+    let positionY = snake[0].y;
 
-    if(direction == "right") positionX += box;
+    if (direction == "right") positionX += box;
     if (direction == "left") positionX -= box;
     if (direction == "up") positionY -= box;
     if (direction == "down") positionY += box;
 
     if (positionX != drop.x || positionY != drop.y) {
-        snake.pop()  
+        snake.pop()
     } else {
         drop.x = Math.floor(Math.random() * 15 + 1) * box
         drop.y = Math.floor(Math.random() * 15 + 1) * box
@@ -76,7 +84,17 @@ function startGame() {
         y: positionY,
     };
     snake.unshift(snakeHead);
+   
+    for (i = 1; i < snake.length; i++) {
+        if (snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+            clearInterval(game);
+            document.getElementById('gameOver').style.display = "block";
+            document.getElementById('reloadGame').style.display = "block";
+            document.getElementById("reloadGame").addEventListener("click", gameReload);
+            function gameReload() {
+                window.location.reload();
+          };
+        };
+    };   
 };
-
 let game = setInterval(startGame, 100);
-
