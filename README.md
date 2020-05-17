@@ -7,5 +7,4 @@
 ## Tools used:
 ###### HTML, CSS, JAVASCRIPT
 
-
-![SnakeGame](https://s6.gifyu.com/images/snakeGame.gif "SnakeGame")
+![SnakeGame](https://i.ibb.co/ydT8VW2/snake-Game.gif "SnakeGame")
