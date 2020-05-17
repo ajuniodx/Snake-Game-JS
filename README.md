@@ -5,6 +5,6 @@
 
 
 ## Tools used:
-###### HTML, CSS, JAVASCRIPT, ANiMATE.CSS
+###### HTML, CSS, JAVASCRIPT, ANIMATE.CSS
 
 ![SnakeGame](https://i.ibb.co/ydT8VW2/snake-Game.gif "SnakeGame")
